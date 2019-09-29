@@ -1,8 +1,7 @@
 " Vim syntax file
-" Language: Jam (specifically boost jam)
-" Maintainer: Markus Peloquin <markus@cs.wisc.edu>
-" URL: http://www.cs.wisc.edu/~markus
-" Last Change: 2009-02-24
+" Language: bbv2 (specifically boost jam)
+" Original Maintainer: Markus Peloquin <markus@cs.wisc.edu>
+" Original URL: http://www.cs.wisc.edu/~markus
 "
 " Giving credit where credit is due, I based this off of the version by
 " Matt Armstrong (see his message here):
@@ -118,4 +117,4 @@ if !exists("did_jamstyle_syntax_inits")
 	hi link jamError Error
 endif
 
-let b:current_syntax = "jamstyle"
+let b:current_syntax = "bbv2"

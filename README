@@ -1,3 +1,8 @@
-This is a mirror of http://www.vim.org/scripts/script.php?script_id=2552
+This plug is based on http://www.vim.org/scripts/script.php?script_id=2552, and cloned from https://github.com/xiterion/jam.vim.
 
-I love Jam, but I hated staring at plain text.  I based this off of something by Matt Armstrong (see source).  This is best effort only.  Jam is also known as bjam and Boost.Jam.
+To avoid conflicts with the builtin filetype/jam.vim, I change the filetype to bbv2 (Boost Build v2).
+
+Defines a compiler named b2.
+
+Unless g:bbv2_disable_project_detect is 0, this plugin will detect if a file is inside Boost Build project.  If so, set compiler to b2.
+
