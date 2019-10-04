@@ -1,0 +1,48 @@
+priority -50
+
+snippet type "define a file type" b
+type.register2 ${1:`!v toupper(expand("%:t:r"))`} : ${2:`!p snip.rv = t[1].lower()`} ;
+endsnippet 
+
+snippet scanner "define new scanner" b
+import scanner ;
+class ${1:`!v expand("%:t:r")`}-scanner : common-scanner
+{
+	rule pattern ( )
+	{
+		return "^\s*include[ ]*\"([^\"]*)\"" ;
+	}
+}
+
+scanner.register $1-scanner : include ;
+type.set-scanner ${2:`!p snip.rv = t[1].upper()`} : $1-scanner ;
+${0}
+endsnippet
+
+snippet generator "define new generator" b
+import generators ;
+generators.register-standard ${1:`!v expand("%:t:r")`}.$4 : ${2:`!p snip.rv = t[1].upper()`} : ${3:H(%_header)} ;
+actions ${4:convert}
+{
+	${5:${6:"./inline-file.py"} "\$(<)" "\$(>)"}
+}
+${0}
+endsnippet
+
+snippet glob "GLOB"
+[ GLOB ${1:.} : ${2:*.cpp} ] ${0}
+endsnippet
+
+snippet cwd "path-constant CWD : ." b
+path-constant CWD : . ;
+
+endsnippet
+
+snippet target "define a target" b
+${1:exe} ${2:name}
+	: ${3:# sources}
+	: ${4:# requirements}
+	: ${5:# default-build}
+	: ${6:# usage-requirements}
+	;
+endsnippet
