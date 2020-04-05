@@ -1,0 +1,12 @@
+--langdef=bbv2
+--langmap=bbv2:.jam
+--langmap=bbv2:+(Jamroot)
+--langmap=bbv2:+(Jamroot.v2)
+--langmap=bbv2:+(Jamfile)
+--langmap=bbv2:+(Jamfile.v2)
+--regex-bbv2=/^[ \t]*(class)[ \t]+([^ \t]+).*/\1 \2/c,Class/
+--regex-bbv2=/^(module)[ \t]+([^ \t]+).*/\1 \2/c,Module/
+--regex-bbv2=/^[ \t]+((local[ \t]+)?rule)[ \t]+([^ \t]+)[ \t]*\(.*/. \1 \3/c,ScopeRule/
+--regex-bbv2=/^local[ \t]+(rule)[ \t]+([^ \t]+)[ \t]*\(.*/\1 \2/l,LocalRule/
+--regex-bbv2=/^(rule|actions)[ \t]+([^ \t]+).*/\1 \2/r,Rule/
+--regex-bbv2=/^[ \t]*(exe|lib|make|run|test|unittest)[ \t]+([^ \t]+).*/\1 \2/t,Target/

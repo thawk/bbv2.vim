@@ -1,3 +1,17 @@
+if exists(":Tagbar")
+    let g:tagbar_type_bbv2 = {
+                \ 'ctagstype' : 'bbv2',
+                \ 'kinds' : [
+                \     't:Targets:0:0',
+                \     'c:Classes and Modules:0:1',
+                \     'r:Rules:0:1',
+                \     'l:Local Rules:1:1',
+                \ ],
+                \ 'sort' : 0,
+                \ 'deffile' : expand('<sfile>:p:h:h') . '/ctags/bbv2.cnf',
+                \ }
+endif
+
 let s:task_tpl = {
             \   "isDetected" : 1,
             \   "detectedName" : "b2: ",
