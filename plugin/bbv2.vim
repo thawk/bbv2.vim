@@ -17,6 +17,10 @@ let s:task_tpl = {
             \   "detectedName" : "b2: ",
             \ }
 
+function! s:InsideSpaceVim()
+    return exists("g:spacevim_version")
+endfunction
+
 function! s:InsideBoostBuildProj()
     let is_b2_proj = 0
 
@@ -25,14 +29,14 @@ function! s:InsideBoostBuildProj()
     for l:name in ["Jamfile", "Jamfile.v2", "Jamfile.jam", "Jamroot", "Jamroot.v2", "Jamroot.jam"]
         for l:p in findfile(l:name, ".;", -1)
             let is_b2_proj = 1
-            if exists("g:spacevim_version")
+            if s:InsideSpaceVim()
                 let tasks = extend(tasks, s:get_b2_tasks(l:p))
             endif
         endfor
     endfor
 
-    if is_b2_proj && exists("g:spacevim_version")
-        let b:b2_tasks = tasks
+    if is_b2_proj
+        let b:b2_detected_tasks = tasks
     endif
     return is_b2_proj
 endfunction
@@ -76,14 +80,18 @@ function! s:get_b2_tasks(filename) abort
 endfunction
 
 function! s:detect_b2_tasks() abort
-    if !exists("b:b2_tasks")
+    if !exists("b:b2_detected_tasks")
         call s:InsideBoostBuildProj()
     endif
 
-    return get(b:, "b2_tasks", {})
+    if get(g:, 'bbv2_auto_detect_tasks', 0)
+        return get(b:, "b2_detected_tasks", {})
+    else
+        return {}
+    endif
 endfunction
 
-if exists("g:spacevim_version")
+if s:InsideSpaceVim()
     " register SpaceVim task provider
     try
         call SpaceVim#plugins#tasks#reg_provider(funcref('s:detect_b2_tasks'))

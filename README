@@ -6,3 +6,4 @@ Defines a compiler named b2.
 
 Unless g:bbv2_disable_project_detect is 0, this plugin will detect if a file is inside Boost Build project.  If so, set compiler to b2.
 
+let g:bbv2_auto_detect_tasks=1 to enable auto detect tasks from Jamfiles.
